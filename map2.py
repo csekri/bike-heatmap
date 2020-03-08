@@ -6,6 +6,7 @@ import os
 import sys
 import argparse
 import cv2
+import aux
 
 
 def drawline(x0, y0, x1, y1):
@@ -31,56 +32,22 @@ def drawline(x0, y0, x1, y1):
             e = e2
     return pixels
 
+folders, map_aspect_ratio, limit, num_bins, bbox, invert, colormap = aux.get_argparser_values()
 
-argparser = argparse.ArgumentParser()
-argparser.add_argument('-l', '--limit', help='sets the limit in each bin, 30 by default')
-argparser.add_argument('--folder', required=True, help='folder path containing *.GPX files')
-limit = 30
-limit = int(argparser.parse_args().limit)
-fold_name = argparser.parse_args().folder
+latitudes, longitudes = aux.load_latlon(folders, bbox)
+
+x_min, x_max, y_min, y_max, aspect_ratio = aux.get_image_aspect_ratio(latitudes, longitudes)
 
 
-latitudes = []
-longitudes = []
+matrix = np.zeros((int(aspect_ratio*map_aspect_ratio*num_bins), num_bins), dtype=float)
 
-
-dir_name = fold_name + '/'
-
-
-for file in os.listdir(dir_name):
-    file = dir_name + file
-    if file.endswith(".GPX"):
-        with open(file, 'r') as gpx_file:
-            gpx = parser.parse(gpx_file)
-            track = gpx[0]
-
-            for point in track.points:
-                if point.latitude > 51.518:
-                    continue
-                latitudes.append(point.latitude)
-                longitudes.append(point.longitude)
-
-latitudes = np.array(latitudes)
-longitudes = np.array(longitudes)
-
-x_min = np.min(longitudes)
-x_max = np.max(longitudes)
-y_min = np.min(latitudes)
-y_max = np.max(latitudes)
-
-asp_ratio = (y_max-y_min) / (x_max-x_min)
-bins = 2000
-
-
-matrix = np.zeros((int(7.4/4.6*asp_ratio*bins), bins), dtype=float)
-print(matrix.shape)
 for i in range(0, latitudes.shape[0]-1):
     y1 = int((latitudes[i]-y_min)/(y_max-y_min)*matrix.shape[0])-1
     x1 = int((longitudes[i]-x_min)/(x_max-x_min)*matrix.shape[1])-1
     y2 = int((latitudes[i+1]-y_min)/(y_max-y_min)*matrix.shape[0])-1
     x2 = int((longitudes[i+1]-x_min)/(x_max-x_min)*matrix.shape[1])-1
 
-    if (y1-y2)*(y1-y2)+(x1-x2)*(x1-x2) > 2000:
+    if (y1-y2)*(y1-y2)+(x1-x2)*(x1-x2) > 100:
         continue
 
     line = drawline(x1,y1, x2,y2)
@@ -92,17 +59,11 @@ for i in range(0, latitudes.shape[0]-1):
 
     matrix[line[:,0], line[:,1]] += 1
 
-print(np.max(matrix))
-
 fig = plt.figure()
 ax = fig.add_subplot(111)
 plt.axis('off')
 
-#ax.set_aspect(7.4/4.6)
-#H, xedges, yedges = np.histogram2d(longitudes, latitudes, bins=1200, density=False)
+aux.imshow(matrix, limit, colormap)
 
-matrix = cv2.GaussianBlur(matrix, (5,5), sigmaX=0.5, sigmaY=0.5)
-matrix[matrix >= limit] = limit
-plt.imshow(np.flip(matrix,0), cmap='inferno', aspect='equal', interpolation='bilinear')
+aux.savefig(folders, limit, 'POLYLINEMAP', invert)
 
-plt.savefig('line'+fold_name+'_lim'+str(limit)+'.png', dpi=2000, bbox_inches='tight', pad_inches=0, transparent=True)

@@ -75,7 +75,6 @@ python3 draw.py -f test_fold -a ,51.464753,,
 
 <img src="imgs/arg_area1.png" width=250>
 
-
 If we want to crop all four sides then run
 
 ```
@@ -92,8 +91,10 @@ How the algorithm works, it divides the geographical area into a grid and places
 python3 draw.py -f test_fold -a " -2.602665,51.444753,-2.592001,51.453004" -b 300
 ```
 
+<p float="left">
 <img src="imgs/arg_area2.png" width=250>
 <img src="imgs/arg_bins.png" width=250>
+</p>
 
 
 The next argument is `--limit` or `-l`. When a place is visited way too often than other places it makes all other places dark/invisible. By setting `--limit` lower we can add more colour to less visited places, by increasing it we can emphasise the most visited places. For example
@@ -102,9 +103,10 @@ The next argument is `--limit` or `-l`. When a place is visited way too often th
 python3 draw.py -f test_fold -a " -2.602665,51.444753,-2.592001,51.453004" -b 300 -l 150
 ```
 
+<p float="left">
 <img src="imgs/arg_bins.png" width=250>
 <img src="imgs/arg_limit.png" width=250>
-
+</p>
 
 The argument `--colormap` or `-c` can define the color-coding of the heatmap. We use **matplotlib** colourmaps. These can be used in the argument: https://matplotlib.org/stable/tutorials/colors/colormaps.html. For example for black and white coloring one may use
 
@@ -112,9 +114,10 @@ The argument `--colormap` or `-c` can define the color-coding of the heatmap. We
 python3 draw.py -f test_fold -a " -2.602665,51.444753,-2.592001,51.453004" -b 300 -l 150 -c turbo
 ```
 
+<p float="left">
 <img src="imgs/arg_limit.png" width=250>
 <img src="imgs/arg_cmap.png" width=250>
-
+</p>
 
 Places visited very few times can seem to disappear from the image. By the `--add_min` or `-m` argument we can add more emphasis to these places, which means we compress the colours a little.
 
@@ -122,9 +125,10 @@ Places visited very few times can seem to disappear from the image. By the `--ad
 python3 draw.py -f test_fold -a " -2.602665,51.444753,-2.592001,51.453004" -b 300 -l 150 -m 50
 ```
 
+<p float="left">
 <img src="imgs/arg_limit.png" width=250>
 <img src="imgs/arg_min.png" width=250>
-
+</p>
 
 There is an opportunity to smoothen the image. This can be achieved by the `-smoothing` or `-s` argument. It expect a non-negative number. 0 means does not perform smoothening. A number *n* means that it will perform smoothening with a kernel of size *2n+1*.
 
@@ -132,9 +136,10 @@ There is an opportunity to smoothen the image. This can be achieved by the `-smo
 python3 draw.py -f test_fold -a " -2.602665,51.444753,-2.592001,51.453004" -b 300 -l 150 -s 0
 ```
 
+<p float="left">
 <img src="imgs/arg_limit.png" width=250>
 <img src="imgs/arg_smoothing.png" width=250>
-
+</p>
 
 Places where we stopped during our activities ca be emphasised by the argument `--emph_stops` or `-e` argument. It expects a postive number, and the bigger this number is the more radical the effect will become.
 
@@ -142,8 +147,10 @@ Places where we stopped during our activities ca be emphasised by the argument `
 python3 draw.py -f test_fold -a " -2.602665,51.444753,-2.592001,51.453004" -b 300 -l 150 -e 8
 ```
 
+<p float="left">
 <img src="imgs/arg_limit.png" width=250>
 <img src="imgs/arg_emph.png" width=250>
+</p>
 
 ### Background Layers
 

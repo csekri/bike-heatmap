@@ -21,13 +21,13 @@ Create and customise your own heatmap about your bike rides.
 
 My heatmap of 4 years of Deliveroo cycling with no background.
 
-<img src="imgs/LIGHT_F-2017-2021_L1000_B5000_M100.png" width=600>
+<img src="imgs/LIGHT_F-2017-2021_L1000_B5000_M100.jpg" width=600>
 
 &nbsp;
 
 My heatmap of 4 years of Deliveroo cycling with building and water layer behind.
 
-<img src="imgs/MAP_F-_L1000_B5000_M100.png" width=600>
+<img src="imgs/MAP_F-_L1000_B5000_M100.jpg" width=600>
 
 &nbsp;
 
@@ -65,7 +65,7 @@ The script can be run by simply writing
 python3 draw.py -f test_fold
 ```
 
-<img src="imgs/arg_none.png" width=250>
+<img src="imgs/arg_none.jpg" width=250>
 
 The extent of the map can be defined by the `--area` or `-a` argument. It expects a formatted string in the form "xmin,ymin,xmax,ymax" where *xmin* is the minimal longitude, *ymin* is the minimal latitude, xmax is the maximal longitude, ymax is the maximal longitude. If any of the four number is not given, it is inferred from the data itself. For example if we want to crop only on the bottom we should run the following command:
 
@@ -73,7 +73,7 @@ The extent of the map can be defined by the `--area` or `-a` argument. It expect
 python3 draw.py -f test_fold -a ,51.464753,,
 ```
 
-<img src="imgs/arg_area1.png" width=250>
+<img src="imgs/arg_area1.jpg" width=250>
 
 If we want to crop all four sides then run
 
@@ -81,7 +81,7 @@ If we want to crop all four sides then run
 python3 draw.py -f test_fold -a " -2.602665,51.444753,-2.592001,51.453004"
 ```
 
-<img src="imgs/arg_area2.png" width=250>
+<img src="imgs/arg_area2.jpg" width=250>
 
 > We need the surrounding string and the extra space because the starting coordinate is negative.
 
@@ -92,8 +92,8 @@ python3 draw.py -f test_fold -a " -2.602665,51.444753,-2.592001,51.453004" -b 30
 ```
 
 <p float="left">
-<img src="imgs/arg_area2.png" width=250>
-<img src="imgs/arg_bins.png" width=250>
+<img src="imgs/arg_area2.jpg" width=250>
+<img src="imgs/arg_bins.jpg" width=250>
 </p>
 
 
@@ -104,8 +104,8 @@ python3 draw.py -f test_fold -a " -2.602665,51.444753,-2.592001,51.453004" -b 30
 ```
 
 <p float="left">
-<img src="imgs/arg_bins.png" width=250>
-<img src="imgs/arg_limit.png" width=250>
+<img src="imgs/arg_bins.jpg" width=250>
+<img src="imgs/arg_limit.jpg" width=250>
 </p>
 
 The argument `--colormap` or `-c` can define the color-coding of the heatmap. We use **matplotlib** colourmaps. These can be used in the argument: https://matplotlib.org/stable/tutorials/colors/colormaps.html. For example for black and white coloring one may use
@@ -115,8 +115,8 @@ python3 draw.py -f test_fold -a " -2.602665,51.444753,-2.592001,51.453004" -b 30
 ```
 
 <p float="left">
-<img src="imgs/arg_limit.png" width=250>
-<img src="imgs/arg_cmap.png" width=250>
+<img src="imgs/arg_limit.jpg" width=250>
+<img src="imgs/arg_cmap.jpg" width=250>
 </p>
 
 Places visited very few times can seem to disappear from the image. By the `--add_min` or `-m` argument we can add more emphasis to these places, which means we compress the colours a little.
@@ -126,8 +126,8 @@ python3 draw.py -f test_fold -a " -2.602665,51.444753,-2.592001,51.453004" -b 30
 ```
 
 <p float="left">
-<img src="imgs/arg_limit.png" width=250>
-<img src="imgs/arg_min.png" width=250>
+<img src="imgs/arg_limit.jpg" width=250>
+<img src="imgs/arg_min.jpg" width=250>
 </p>
 
 There is an opportunity to smoothen the image. This can be achieved by the `-smoothing` or `-s` argument. It expect a non-negative number. 0 means does not perform smoothening. A number *n* means that it will perform smoothening with a kernel of size *2n+1*.
@@ -137,8 +137,8 @@ python3 draw.py -f test_fold -a " -2.602665,51.444753,-2.592001,51.453004" -b 30
 ```
 
 <p float="left">
-<img src="imgs/arg_limit.png" width=250>
-<img src="imgs/arg_smoothing.png" width=250>
+<img src="imgs/arg_limit.jpg" width=250>
+<img src="imgs/arg_smoothing.jpg" width=250>
 </p>
 
 Places where we stopped during our activities ca be emphasised by the argument `--emph_stops` or `-e` argument. It expects a postive number, and the bigger this number is the more radical the effect will become.
@@ -148,8 +148,8 @@ python3 draw.py -f test_fold -a " -2.602665,51.444753,-2.592001,51.453004" -b 30
 ```
 
 <p float="left">
-<img src="imgs/arg_limit.png" width=250>
-<img src="imgs/arg_emph.png" width=250>
+<img src="imgs/arg_limit.jpg" width=250>
+<img src="imgs/arg_emph.jpg" width=250>
 </p>
 
 ### Background Layers

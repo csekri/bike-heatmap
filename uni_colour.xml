@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Map background-color='#000000' srs="+init=epsg:3857">
+
+  <Style name ="buildings">
+    <Rule>
+    <PolygonSymbolizer fill ="#CCCCCC"/>
+    </Rule>
+  </Style>
+
+  <Style name ="buildings_border">
+    <Rule>
+    <LineSymbolizer stroke ="#555555" stroke-width="0.5"/>
+    </Rule>
+  </Style>
+
+  <Style name ="road">
+    <Rule>
+    <LineSymbolizer stroke ="#171717" stroke-width="2" stroke-linecap="round"/>
+    </Rule>
+  </Style>
+
+  <Style name ="landuse" comp-op="multiply">
+    <Rule>
+      <Filter>[fclass]='park' or [fclass]='cemetery' or [fclass]='forest' or [fclass]='meadow' </Filter>
+      <PolygonSymbolizer fill="#125308" fill-opacity="0.8" />
+    </Rule>
+  </Style>
+
+  <Style name="water">
+    <Rule>
+      <PolygonSymbolizer fill="#1b3442"/>
+    </Rule>
+  </Style>
+
+<Style name="raster">
+	<Rule>
+		<RasterSymbolizer scaling="bilinear" opacity="1">
+		</RasterSymbolizer>
+	</Rule>
+</Style>
+
+
+<Layer name="rast" status="on" srs="+init=epsg:4326">
+	<StyleName>raster</StyleName>
+	<Datasource>
+		<Parameter name="type">gdal</Parameter>
+		<Parameter name="file">myGeoTIFF.tif</Parameter>
+		<Parameter name="format">tiff</Parameter>
+	</Datasource>
+</Layer>
+
+
+</Map>

@@ -1,0 +1,7 @@
+matplotlib==3.1.2
+Fiona==1.8.18
+opencv_python==4.4.0.44
+numba==0.51.2
+numpy==1.17.4
+mapnik==0.1
+osgeo==0.0.1

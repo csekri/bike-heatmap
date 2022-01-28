@@ -1,0 +1,10 @@
+__pycache__/
+*.png
+*.jpg
+*.tif
+bristol-latest-free/
+data/
+GBR_adm/
+buildings.xml
+Makefile
+coastline.xml
